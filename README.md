@@ -1,6 +1,6 @@
 # The Unofficial Guide
 
-<!-- Replace this line with your name and which corpus you picked. -->
+Temur Rakhmatov - advice_threads
 
 > **This file is your submission.** Fill it in as you go — most sections get
 > written during the milestone that produces them, not at the end.
@@ -29,8 +29,8 @@
 
 ## Chunking Strategy
 
-**Chunk size:**
-**Overlap:**
+**Chunk size:** Depends on the length of the thread reply but has a minimum of 80 characters
+**Overlap:** None
 
 <!-- What about YOUR documents made you pick these numbers? Short posts and
      long sectioned guides don't want the same chunking, and "800 seemed
@@ -41,6 +41,8 @@
      more than pretending you got it right first time.
 
      Milestone 3. -->
+
+The "advice_threads" corpus consists of a series of thread replies where students post advice, tips, and experiences. In these documents, each reply is separated by a blank line. The original chunker cut sentences in half and produced 2 character chunks which were often unusable. Therefore, to keep each response as an independent chunk I split chunks for every blank line, represented by "\n\n", and made sure each one is greater than 80 characters in length to remove empty lines or formatting issues.
 
 ## Sample Chunks
 
@@ -53,29 +55,39 @@
 
      Milestone 3. -->
 
-**Chunk 1** — source: `` — produced by: ``
+**Chunk 1** — source: `thread_bike_commute.txt#0` — produced by: `chunker.py::split_documents`
 
 ```
+--- reply 1 (14 votes) ---
+Yeah. Cuts an 18 minute walk to about 6. The thing nobody mentions is storage — covered bike parking exists at three buildings and is full by 9am at all three.
 ```
 
-**Chunk 2** — source: `` — produced by: ``
+**Chunk 2** — source: `thread_bike_commute.txt#1` — produced by: `chunker.py::split_documents`
 
 ```
+--- reply 2 (9 votes) ---
+Counterpoint, I sold mine. Between November and March the paths are either icy or salted and salt destroys a drivetrain in one season.
 ```
 
-**Chunk 3** — source: `` — produced by: ``
+**Chunk 3** — source: `thread_bike_commute.txt#2` — produced by: `chunker.py::split_documents`
 
 ```
+--- reply 3 (22 votes) ---
+Both true. I keep a cheap bike for September to November and walk the rest of the year. Total cost was about $120 for the bike and I don't care what happens to it.
 ```
 
-**Chunk 4** — source: `` — produced by: ``
+**Chunk 4** — source: `thread_bike_commute.txt#3` — produced by: `chunker.py::split_documents`
 
 ```
+--- reply 4 (5 votes) ---
+If you do get one, the campus does free registration and it's the only reason I got mine back after it was taken.
 ```
 
-**Chunk 5** — source: `` — produced by: ``
+**Chunk 5** — source: `thread_changing_major.txt#0` — produced by: `chunker.py::split_documents`
 
 ```
+--- reply 1 (22 votes) ---
+Administratively trivial — it's a form. The real question is whether the credits you've taken map onto the new requirements.
 ```
 
 ## Sample Answer
