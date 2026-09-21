@@ -23,8 +23,7 @@ For at least 4 of my 5 test questions, the retrieved chunks include one that
 contains the answer.
 
 **Why this target:**
-<!-- e.g. "One of my questions is about a topic only two documents mention, so
-     I expect that one to be hard." -->
+The corpus consists of informal forum threads where answers to the questions are in short responses. I chose to allow 4 out of 5 test questions to allow for some margin of error in the event that the question does not closely match the phrasing in the threads, possibly leading to an invalid response.
 
 ---
 
@@ -33,8 +32,7 @@ contains the answer.
 Every answer the system produces names at least one source document.
 
 **Why this target:**
-<!-- Why all five and not four? What about your setup makes that achievable —
-     or what would have to go wrong for it not to be? -->
+Citing at least one source document allows me to verify the source of the information and ensure that no other document may have a conflicting answer to the same question.
 
 ---
 
@@ -50,12 +48,13 @@ in at least 4 of 5 tries.
      just keep five of them, or the "4 of 5" above has nothing to be 4 of. -->
 
 **Why this target:**
-<!-- What did your distances look like when you set the cutoff in Milestone 4?
-     Was there a clean gap, or did the two groups overlap? -->
+Having a response of "I don't have enough information about that" ensures that responses are not loosely extrapolated or hallucinated from a misreading of the information in the threads. However, this may not always be the case, and in some instances responses that may seem close in proximity despite not being relevant which is accounted for by leaving a margin of error and only requiring 4 of 5 tries to respond with "I don't have enough information about that."
 
 ---
 
 ## 4. Something about your chunks
+
+At least 90% of produced chunks are between 150 and 500 characters long and contain complete sentences, without cutting off in the middle of a thought.
 
 <!-- YOU WRITE THIS ONE.
 
@@ -72,12 +71,14 @@ in at least 4 of 5 tries.
 
 
 **Why this target:**
-
+The posts in this corpus are short thread replies. Setting the minimum to 150 characters stops the chunker from grabbing just a thread title or empty header line, and setting the maximum to 500 characters keeps individual student replies self-contained so different people's comments are not combined into one chunk.
 
 
 ---
 
 ## 5. Your choice
+
+Retrieval returns the top chunks in under 1 second on average across all 5 test questions.
 
 <!-- YOU WRITE THIS ONE TOO.
 
@@ -91,7 +92,7 @@ in at least 4 of 5 tries.
 
 **Why this target:**
 
-
+Since the corpus is relatively small and runs locally, searching through its contents should not take a long time. Keeping it under a second makes sure it feels responsive in use instead of requiring long waiting periods every time a question is asked.
 
 ---
 
