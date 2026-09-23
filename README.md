@@ -26,6 +26,7 @@ Temur Rakhmatov - advice_threads
      this repo.
 
      Milestone 5. -->
+This system is a retrieval-augmented generation (RAG) assistant using the "advice-threads" corpus, a collection of brief discussions and recommendations to certain topics and questions, mostly relating to college life. The RAG assistant can be asked questions regarding academic policies, study habits, clubs, internships, roommate conflicts, and other day-to-day college-related topics. It works by referring to chunked texts from collection of threads for a response and using the most relevant chunks to provide an answer while also citing the sources that the answer derives from. If questions are irrelevant to college life or cannot be answered using the threads, the RAG declines to answer rather than guessing a response.
 
 ## Chunking Strategy
 
@@ -99,8 +100,6 @@ Administratively trivial — it's a form. The real question is whether the credi
 
 **Answer:** Based on the provided documents, bringing a bike cuts an 18-minute walk down to about 6 minutes, but covered bike parking fills up by 9 am at all three buildings that have it (thread_bike_commute.txt). Additionally, getting free campus registration is noted as the only reason one person got their bike back after it was taken (thread_bike_commute.txt), and another person keeps a cheap bike for part of the year and walks the rest (thread_bike_commute.txt).
 
-```
-```
 
 **My relevance cutoff:** 0.6
 
@@ -139,9 +138,9 @@ The distance for the five questions the corpus covers ranged from 0.283 to 0.521
 
      Milestone 5. -->
 
-**1.**
+**1.** I used an AI to evaluate my five criteria and determine if they were objective and testable. The AI pointed out that my criterion regarding chunk quality was too subjective, noting that requiring chunks to "contain complete ideas" is not a concrete or measurable standard. Based on this feedback, I modified the wording to require complete sentences instead.
 
-**2.**
+**2.** I also used an AI to evaluate my idea of chunking the "advice-threads" corpus by splitting replies on blank lines (\n\n) rather than using fixed character quantities. The AI suggested that I also add a minimum character threshhold for the chunks to ensure that tiny insignificant fragments do not become chunks and are instead discarded. Following this advice, I incorporated an 80-character minimum limit for the chunker to remove short fragments.
 
 <!-- ── Stretch features ─────────────────────────────────────────────────────
      Doing one? Say so here BEFORE you start. A feature this README never

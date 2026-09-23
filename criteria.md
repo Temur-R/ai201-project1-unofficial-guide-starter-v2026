@@ -54,7 +54,7 @@ Having a response of "I don't have enough information about that" ensures that r
 
 ## 4. Something about your chunks
 
-At least 90% of produced chunks are between 150 and 500 characters long and contain complete sentences, without cutting off in the middle of a thought.
+At least 90% of produced chunks are between 80 and 500 characters long and contain complete sentences, without cutting off in the middle of a thought.
 
 <!-- YOU WRITE THIS ONE.
 
@@ -71,7 +71,7 @@ At least 90% of produced chunks are between 150 and 500 characters long and cont
 
 
 **Why this target:**
-The posts in this corpus are short thread replies. Setting the minimum to 150 characters stops the chunker from grabbing just a thread title or empty header line, and setting the maximum to 500 characters keeps individual student replies self-contained so different people's comments are not combined into one chunk.
+The posts in this corpus are short thread replies. Setting the minimum to 80 characters stops the chunker from grabbing just a thread title or empty header line, and setting the maximum to 500 characters keeps individual student replies self-contained so different people's comments are not combined into one chunk.
 
 
 ---
