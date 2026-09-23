@@ -95,14 +95,14 @@ Administratively trivial — it's a form. The real question is whether the credi
 <!-- One complete question and answer, pasted as text, with the source line
      visible. Milestone 4. -->
 
-**Question:**
+**Question:** Is it worth bringing a bike to campus?
 
-**Answer:**
+**Answer:** Based on the provided documents, bringing a bike cuts an 18-minute walk down to about 6 minutes, but covered bike parking fills up by 9 am at all three buildings that have it (thread_bike_commute.txt). Additionally, getting free campus registration is noted as the only reason one person got their bike back after it was taken (thread_bike_commute.txt), and another person keeps a cheap bike for part of the year and walks the rest (thread_bike_commute.txt).
 
 ```
 ```
 
-**My relevance cutoff:**
+**My relevance cutoff:** 0.6
 
 <!-- The number you set in config.py, and how you got there.
 
@@ -115,8 +115,19 @@ Administratively trivial — it's a form. The real question is whether the credi
 
 | Question | In corpus? | Best distance |
 |---|---|---|
-|  |  |  |
+| Who decides whether transfer credits count toward a major? | Yes | 0.521 |
+| What is a good study spot before 10am that isn't the library? | Yes | 0.485 |
+| Where can a student check current textbook problem numbering for free? | Yes | 0.398 |
+| How many sessions is the free sleep workshop run by counselling? | Yes | 0.372 |
+| According to students, what is generally the response window if an email policy is not in the syllabus? | Yes | 0.283 |
+| What is the capital of Mongolia? | No | 0.897 |
+| How do I change the oil in a diesel engine? | No | 0.721 |
+| Who won the 1994 World Cup? | No | 0.911 |
+| What is the recommended dosage of ibuprofen for a headache? | No | 0.782 |
+| How do I write a for loop in Rust? | No | 0.892 |
 
+
+The distance for the five questions the corpus covers ranged from 0.283 to 0.521, whereas the distances for the five out of scope questions ranged from 0.721 to 0.911. Since the maximum distance of the five questions the corpus covered is 0.521 and the minimum distance of the five out of scope questions is 0.721, the average of the two is 0.621. Therefore, I decided to maintain the original 0.6 relevance cutoff as it is situated comfortably within this gap, greater than the maximum distance of the five questions the corpus covered and below the minimum distance of the five out of scope questions, making it effective at filtering irrelevant questions without rejecting valid questions.
 ## How I Used AI
 
 <!-- Two specific moments. For each: what you asked for, what came back, and
