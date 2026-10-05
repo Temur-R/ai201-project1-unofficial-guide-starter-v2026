@@ -229,11 +229,22 @@ The retrieval time was not measured in the runs.
 
 | # | Criterion | Verdict | How I decided |
 |---|---|---|---|
-| 1 |  |  |  |
-| 2 |  |  |  |
-| 3 |  |  |  |
-| 4 |  |  |  |
-| 5 |  |  |  |
+| 1 | Retrieved chunks contain the answer | MISSED | Our target required at least 4 out of 5 questions to retrieve chunks with the answer, but Questions 1 and 2 failed to retrieve the necessary answer for all three runs, resulting in a score of 3 of 5. |
+| 2 | Every answer names a source | MISSED | Our target required all 5 answers to name a source document, but Questions 1 and 2 refused to produce responses, resulting in no citations. |
+| 3 | Gate stops out-of-corpus questions | MET | The relevance gate successfully refused all 5 out-of-scope test questions, exceeding our target requirement of 4 out of 5. |
+| 4 | At least 90% of produced chunks are 80-500 chars | MISSED | This criterion was missed because `run_eval.py` records text answers and distance scores, rather than chunk character length. |
+| 5 | Retrieval returns top chunks in under 1 second | MISSED | This criterion was missed because the evaluation does not log the retrieval time. |
+
+Revised Criterions:
+
+Criteria 4: At least 90% of produced chunks are 80-500 characters.
+Revised: At least 4 of 5 questions return chunks generated from complete thread replies.
+Reason: The original criterion could not be measured because `run_eval.py` logs answers and distances rather than chunk character counts.
+
+
+Criteria 5: Retrieval returns top chunks in under 1 second.
+Revised: Evaluation script executes all 5 queries completely without timing out.
+Reason: The original criterion could not be measured because `run_eval.py` does not measure retrieval timing.
 
 ## Diagnoses
 
