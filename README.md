@@ -169,15 +169,52 @@ The distance for the five questions the corpus covers ranged from 0.283 to 0.521
 
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
-| 1. Retrieved chunk contains the answer | 4 of 5 |  |  |  |  |
-| 2. Every answer names a source | 5 of 5 |  |  |  |  |
-| 3. Gate stops out-of-corpus questions | 4 of 5 |  |  |  |  |
-| 4. | | | | | |
-| 5. | | | | | |
+| 1. Retrieved chunks contain the answer | 4 of 5 | 3/5 | 3/5 | 3/5 | MISSED |
+| 2. Every answer names a source | 5 of 5 | 3/5 | 3/5 | 3/5 | MISSED |
+| 3. Gate stops out-of-corpus questions | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 4. At least 90% of produced chunks are 80-500 chars | 90% | 0/5 | 0/5 | 0/5 | MISSED |
+| 5. Retrieval returns top chunks in under 1 second | 4 of 5 | 0/5 | 0/5 | 0/5 | MISSED |
 
 <!-- Underneath, paste the REAL output for each criterion from one of your
      runs — the actual text your system produced, not a description of it.
      Name the file and function that produced it. -->
+Criterion 1:
+### Who decides whether transfer credits count toward a major? — run 1
+
+- Best distance: 0.5211 (passed the gate)
+- Sources retrieved: thread_changing_major.txt, thread_meal_plan_tier.txt, thread_pass_fail.txt, thread_transfer_credits.txt
+
+Based on the provided documents, there is not enough information to answer who decides whether transfer credits count toward a major.
+
+
+Criterion 2:
+### Where can a student check current textbook problem numbering for free? — run 1
+
+- Best distance: 0.3976 (passed the gate)
+- Sources retrieved: thread_first_year_regret.txt, thread_group_project.txt, thread_printing.txt, thread_textbook_editions.txt
+
+A student can check the problem numbering against the current edition for free using the library reserve copy. 
+
+Source: thread_textbook_editions.txt
+
+
+Criterion 3:
+| Out-of-scope question | Best distance | Gate |
+|---|---|---|
+| What is the capital of Mongolia? | 0.897 | refused |
+| How do I change the oil in a diesel engine? | 0.721 | refused |
+| Who won the 1994 World Cup? | 0.911 | refused |
+| What is the recommended dosage of ibuprofen for a headache? | 0.782 | refused |
+| How do I write a for loop in Rust? | 0.892 | refused |
+
+
+Criterion 4:
+Chunk sizes were not measured in the runs.
+
+
+Criterion 5:
+The retrieval time was not measured in the runs.
+
 
 ## Verdicts
 
