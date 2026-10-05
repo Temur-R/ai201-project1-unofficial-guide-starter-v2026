@@ -235,6 +235,8 @@ The retrieval time was not measured in the runs.
 | 4 | At least 90% of produced chunks are 80-500 chars | MISSED | This criterion was missed because `run_eval.py` records text answers and distance scores, rather than chunk character length. |
 | 5 | Retrieval returns top chunks in under 1 second | MISSED | This criterion was missed because the evaluation does not log the retrieval time. |
 
+
+
 Revised Criterions:
 
 Criteria 4: At least 90% of produced chunks are 80-500 characters.
@@ -265,6 +267,14 @@ Reason: The original criterion could not be measured because `run_eval.py` does 
      low, and which one you'd tighten and to what.
 
      Milestone 3. -->
+
+
+Criteria 1 and 2:
+Questions 1 and 2 passed the relevance gate with distances of 0.5211 for Question 1 and 0.4851 for Question 2, both of which are below the 0.6 threshold, but the search did not return the specific sentences containing the answers. Because the retrieved chunks lacked the required facts, the model safely refused to answer, which also prevented generated source citations from being included in the response.
+
+Criteria 4 & 5:
+Criteria 4 and 5 could not be evaluated from the run log because 'run_eval.py' records text answers and distances, but does not log chunk character lengths or retrieval time.
+
 
 ## The Improvement
 
