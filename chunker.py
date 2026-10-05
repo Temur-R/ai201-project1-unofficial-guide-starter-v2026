@@ -98,17 +98,16 @@ def split_documents(documents: list[Document]) -> list[Chunk]:
         splitting on a character count?
     """
     chunks = []
+    dropped_count = 0
 
     for doc in documents:
-        # Cut the document into separate paragraphs at every blank line
         paragraphs = doc.text.split("\n\n")
         
         index = 0
         for p in paragraphs:
             clean_text = p.strip()
             
-            # Skip empty lines or tiny bits shorter than 80 characters
-            if len(clean_text) >= 80:
+            if len(clean_text) >= config.MIN_CHUNK_SIZE:
                 chunk = Chunk(
                     text=clean_text,
                     source=doc.source,
@@ -116,7 +115,12 @@ def split_documents(documents: list[Document]) -> list[Chunk]:
                     produced_by="chunker.py::split_documents",
                 )
                 chunks.append(chunk)
-                index = index + 1
+                index += 1
+            else:
+                dropped_count += 1
+
+    if dropped_count > 0:
+        print(f"Chunker: Dropped {dropped_count} chunks smaller than {config.MIN_CHUNK_SIZE} characters.")
 
     return chunks
 

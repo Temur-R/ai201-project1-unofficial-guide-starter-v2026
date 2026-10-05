@@ -243,7 +243,6 @@ Criteria 4: At least 90% of produced chunks are 80-500 characters.
 Revised: At least 4 of 5 questions return chunks generated from complete thread replies.
 Reason: The original criterion could not be measured because `run_eval.py` logs answers and distances rather than chunk character counts.
 
-
 Criteria 5: Retrieval returns top chunks in under 1 second.
 Revised: Evaluation script executes all 5 queries completely without timing out.
 Reason: The original criterion could not be measured because `run_eval.py` does not measure retrieval timing.
@@ -278,9 +277,11 @@ Criteria 4 and 5 could not be evaluated from the run log because 'run_eval.py' r
 
 ## The Improvement
 
-**What I changed:**
+**What I changed:** 
+Increased `TOP_K` in `config.py` from 5 to 10 to pull a larger number of candidate chunks per question
 
-**Why I picked it:**
+**Why I picked it:** 
+Questions 1 and 2 passed the relevance gate, but the top 5 chunks retrieved lacked the exact answer sentences. Increasing `TOP_K` directly tests whether candidate chunks ranked slightly lower in relevance contain the required facts.
 
 <!-- Connect it to a specific diagnosis above in one sentence. If you can't,
      you picked a fix because it sounded impressive. -->
@@ -292,13 +293,14 @@ Criteria 4 and 5 could not be evaluated from the run log because 'run_eval.py' r
 
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
-| 1. Retrieved chunk contains the answer | 4 of 5 |  |  |  |  |
-| 2. Every answer names a source | 5 of 5 |  |  |  |  |
-| 3. Gate stops out-of-corpus questions | 4 of 5 |  |  |  |  |
-| 4. | | | | | |
-| 5. | | | | | |
+| 1. Retrieved chunks contain the answer | 4 of 5 | 3/5 | 3/5 | 3/5 | MISSED |
+| 2. Every answer names a source | 5 of 5 | 3/5 | 3/5 | 3/5 | MISSED |
+| 3. Gate stops out-of-corpus questions | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 4. Complete thread replies returned | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 5. Script executes without timing out | 5 of 5 | 5/5 | 5/5 | 5/5 | MET |
 
-**Did it help?**
+**Did it help?** 
+No, doubling the `TOP_K` value to 10 did not resolve the misses for Questions 1 and 2. While the correct source thread files (`thread_transfer_credits.txt` and `thread_study_spots.txt`) were retrieved, the search failed to rank the specific answer paragraphs high enough to supply the required facts. This seems to confirm that the failure is a ranking problem rather than a context window cutoff issue.
 
 <!-- Say plainly whether it did, and how you know. If it made things worse,
      say that — a change that backfired, honestly reported, earns full credit
