@@ -318,6 +318,7 @@ No, doubling the `TOP_K` value to 10 did not resolve the misses for Questions 1 
      not.
 
      Milestone 5. -->
+     Criteria 1 and 2 remain missed (3/5) because the search lacks exact term matching. In the next iteration, the system needs hybrid search in `store.py` so exact key phrases like "transfer credit" and "10am" are prioritized during retrieval regardless of the distance.
 
 ## What I'd Do Differently
 
@@ -325,3 +326,5 @@ No, doubling the `TOP_K` value to 10 did not resolve the misses for Questions 1 
      differently, and why?
 
      Milestone 5. -->
+     
+     In Unit 2, I would write Criteria 4 and 5 from the start to target variables that `run_eval.py` directly logs, rather than assuming chunk character counts and retrieval timing were tracked by the test runner.
